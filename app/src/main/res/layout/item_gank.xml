@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="gank"
+            type="com.cheney.mvvm_demo.entity.Gank" />
+
+        <variable
+            name="onClick"
+            type="com.cheney.mvvm_demo.ui.main.ItemClickCallback" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{() ->  onClick.onClick(gank)}"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{gank.desc}"
+                android:textColor="?android:attr/colorAccent"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginTop="8dp"
+                app:glideUrl="@{gank.getImageUrl(0)}"
+                app:layout_constraintEnd_toStartOf="@+id/image2"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:visibleGone="@{gank.images.length>=1}"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:glideUrl="@{gank.getImageUrl(1)}"
+                app:layout_constraintEnd_toStartOf="@+id/image3"
+                app:layout_constraintStart_toEndOf="@+id/image1"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:visibleGone="@{gank.images.length>=2}"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:glideUrl="@{gank.getImageUrl(2)}"
+                app:layout_constraintEnd_toStartOf="@+id/image4"
+                app:layout_constraintStart_toEndOf="@+id/image2"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:visibleGone="@{gank.images.length>=3}"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:glideUrl="@{gank.getImageUrl(3)}"
+                app:layout_constraintEnd_toStartOf="@+id/image5"
+                app:layout_constraintStart_toEndOf="@+id/image3"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:visibleGone="@{gank.images.length>=4}"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:glideUrl="@{gank.getImageUrl(4)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image4"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:visibleGone="@{gank.images.length>=5}"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="8dp"
+                android:background="#000"
+                app:layout_constraintTop_toBottomOf="@+id/image1"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/new_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/new_tag"
+                android:padding="3dp"
+                android:text="@string/new_tag"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toStartOf="@+id/author"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:visibleGone="@{!gank.viewed}" />
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/author_tag"
+                android:padding="3dp"
+                android:text="@{gank.author}"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toStartOf="@+id/date"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/new_tag"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="@{gank.publishedAt.substring(0,10)}"
+                app:layout_constraintBottom_toBottomOf="@+id/author"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/author"
+                app:layout_constraintTop_toTopOf="@+id/author" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

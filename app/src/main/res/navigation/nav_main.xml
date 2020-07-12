@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.cheney.mvvm_demo.ui.main.MainFragment"
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.cheney.mvvm_demo.ui.detail.WebViewFragment"
+        android:label="WebViewFragment" >
+        <argument
+            android:name="gankId"
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mvvm_demo</string>
+    <string name="new_tag">New</string>
+</resources>

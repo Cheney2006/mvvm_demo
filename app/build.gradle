@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.cheney.mvvm_demo"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.support.app_compat
+    implementation deps.support.recyclerview
+    implementation deps.support.swipe_refresh
+    implementation deps.constraint_layout
+    implementation "androidx.cardview:cardview:1.0.0"
+    //navigation
+    implementation deps.navigation.fragment
+    implementation deps.navigation.ui
+
+//    implementation deps.refresh_header
+
+    //paging
+
+
+    // databinding
+    annotationProcessor deps.databinding.complier
+
+    // rxjava
+    implementation deps.rxjava2
+    implementation deps.rx_android
+
+    // viewmodel
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    annotationProcessor deps.lifecycle.compiler
+
+    // room
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    annotationProcessor deps.room.compiler
+
+    // retrofit
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.scalars
+    implementation deps.retrofit.protobuf
+    implementation deps.retrofit.rxjava2
+    implementation deps.okhttp_logging_interceptor
+    implementation deps.rxjava2debug
+
+    // glide
+    implementation deps.glide.runtime
+    annotationProcessor deps.glide.compiler
+
+    //dagger
+    implementation deps.dagger.runtime
+    annotationProcessor deps.dagger.compiler
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    annotationProcessor deps.dagger.android_support_compiler
+
+    testImplementation deps.junit
+
+
+
+
+    testImplementation deps.atsl.ext_junit
+    testImplementation deps.atsl.rules
+//    androidTestImplementation deps.espresso.core
+//    androidTestImplementation deps.androidx.espresso.core
+    testImplementation deps.hamcrest
+//    testImplementation deps.mockito.core
+    testImplementation deps.robolectric
+
+    // powermock
+    testImplementation "org.powermock:powermock-core:2.0.2"
+    testImplementation "org.powermock:powermock-module-junit4:2.0.2"
+    testImplementation "org.powermock:powermock-module-junit4-rule:2.0.2"
+    testImplementation "org.powermock:powermock-api-mockito2:2.0.2"
+    testImplementation "org.powermock:powermock-classloading-xstream:2.0.2"
+
+    testImplementation 'io.mockk:mockk:1.10.0'
+}
+
+repositories {
+    google()
+}
